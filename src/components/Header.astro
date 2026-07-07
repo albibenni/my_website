@@ -1,0 +1,95 @@
+---
+import { siteConfig } from "@/config/site";
+import { translatePath, useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+  alternates: Record<Locale, string>;
+}
+
+const { locale, alternates } = Astro.props;
+const t = useTranslations(locale);
+
+const otherLocale: Locale = locale === "en" ? "it" : "en";
+
+const navItems = [
+  { href: translatePath("/", locale), label: t("nav.home") },
+  { href: translatePath("/projects/", locale), label: t("nav.projects") },
+  { href: translatePath("/articles/", locale), label: t("nav.articles") },
+  { href: translatePath("/about/", locale), label: t("nav.about") },
+];
+
+function isActive(href: string): boolean {
+  const current = Astro.url.pathname.replace(/\/$/, "") || "/";
+  const target = href.replace(/\/$/, "") || "/";
+  return target === "/" || target === "/it"
+    ? current === target
+    : current.startsWith(target);
+}
+---
+
+<header
+  class="sticky top-0 z-10 border-b border-zinc-200 bg-white/90 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/90"
+>
+  <div
+    class="mx-auto flex w-full max-w-3xl flex-wrap items-center gap-x-6 gap-y-2 px-5 py-3"
+  >
+    <a
+      href={translatePath("/", locale)}
+      class="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+    >
+      {siteConfig.author}
+    </a>
+
+    <nav
+      class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm"
+      aria-label="Main"
+    >
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? "page" : undefined}
+            class:list={[
+              "transition-colors hover:text-zinc-900 dark:hover:text-zinc-100",
+              isActive(item.href)
+                ? "font-medium text-zinc-900 dark:text-zinc-100"
+                : "text-zinc-500 dark:text-zinc-400",
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="ml-auto flex items-center gap-3 text-sm">
+      <a
+        href={alternates[otherLocale]}
+        rel="alternate"
+        hreflang={otherLocale}
+        aria-label={t("nav.switchLanguage")}
+        class="rounded border border-zinc-300 px-2 py-0.5 font-medium text-zinc-600 uppercase transition-colors hover:border-zinc-500 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+      >
+        {otherLocale}
+      </a>
+
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label={t("theme.toggle")}
+        class="cursor-pointer rounded border border-zinc-300 px-2 py-0.5 text-zinc-600 transition-colors hover:border-zinc-500 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+      >
+        <span class="dark:hidden">🌙</span>
+        <span class="hidden dark:inline">☀️</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const dark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  });
+</script>

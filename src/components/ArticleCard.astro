@@ -1,0 +1,31 @@
+---
+import { articlePath, parseArticleId, type Article } from "@/data/articles";
+import { formatDate, type Locale } from "@/i18n";
+
+interface Props {
+  article: Article;
+  locale: Locale;
+}
+
+const { article, locale } = Astro.props;
+const { slug } = parseArticleId(article.id);
+---
+
+<article class="group">
+  <a href={articlePath(locale, slug)} class="block">
+    <time
+      datetime={article.data.pubDate.toISOString()}
+      class="text-xs text-zinc-400 dark:text-zinc-500"
+    >
+      {formatDate(article.data.pubDate, locale)}
+    </time>
+    <h3
+      class="mt-0.5 font-semibold text-zinc-900 group-hover:text-indigo-600 dark:text-zinc-100 dark:group-hover:text-indigo-400"
+    >
+      {article.data.title}
+    </h3>
+    <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+      {article.data.description}
+    </p>
+  </a>
+</article>

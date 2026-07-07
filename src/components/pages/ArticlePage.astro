@@ -1,0 +1,105 @@
+---
+import { render } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import { articlePath, type Article } from "@/data/articles";
+import {
+  formatDate,
+  translatePath,
+  useTranslations,
+  type Locale,
+} from "@/i18n";
+
+interface Props {
+  article: Article;
+  locale: Locale;
+}
+
+const { article, locale } = Astro.props;
+const t = useTranslations(locale);
+const { Content } = await render(article);
+
+const otherLocale: Locale = locale === "en" ? "it" : "en";
+
+// If this article has a translation, point hreflang and the language
+// switcher at it; otherwise fall back to the articles index.
+const alternates = {
+  [locale]: Astro.url.pathname,
+  [otherLocale]: article.data.translationSlug
+    ? articlePath(otherLocale, article.data.translationSlug)
+    : translatePath("/articles/", otherLocale),
+} as Record<Locale, string>;
+---
+
+<Base
+  title={article.data.title}
+  description={article.data.description}
+  locale={locale}
+  alternates={alternates}
+  ogType="article"
+>
+  <article>
+    <header>
+      <time
+        datetime={article.data.pubDate.toISOString()}
+        class="text-sm text-zinc-400 dark:text-zinc-500"
+      >
+        {formatDate(article.data.pubDate, locale)}
+      </time>
+      {
+        article.data.updatedDate && (
+          <span class="text-sm text-zinc-400 dark:text-zinc-500">
+            · {t("articles.updated")}{" "}
+            {formatDate(article.data.updatedDate, locale)}
+          </span>
+        )
+      }
+      <h1
+        class="mt-1 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100"
+      >
+        {article.data.title}
+      </h1>
+      {
+        article.data.tags.length > 0 && (
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            {article.data.tags.map((tag) => (
+              <li class="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    <div class="prose prose-zinc dark:prose-invert mt-8 max-w-none">
+      <Content />
+    </div>
+  </article>
+
+  <p class="mt-10">
+    <a
+      href={translatePath("/articles/", locale)}
+      class="text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+    >
+      ← {t("articles.backToList")}
+    </a>
+  </p>
+</Base>
+
+<!-- Article JSON-LD for richer search results. -->
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.data.title,
+    description: article.data.description,
+    datePublished: article.data.pubDate.toISOString(),
+    ...(article.data.updatedDate && {
+      dateModified: article.data.updatedDate.toISOString(),
+    }),
+    inLanguage: locale,
+    url: new URL(Astro.url.pathname, Astro.site).toString(),
+  })}
+/>

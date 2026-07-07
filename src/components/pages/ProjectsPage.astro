@@ -1,0 +1,90 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import { allProjectTags, projects } from "@/data/projects";
+import { useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Base
+  title={t("projects.title")}
+  description={t("projects.intro")}
+  locale={locale}
+>
+  <h1
+    class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100"
+  >
+    {t("projects.title")}
+  </h1>
+  <p class="mt-2 max-w-prose text-zinc-600 dark:text-zinc-400">
+    {t("projects.intro")}
+  </p>
+
+  <!-- Client-side tag filter: without JS all projects simply stay visible. -->
+  <div id="project-filters" class="mt-6 flex flex-wrap gap-2" hidden>
+    <button
+      type="button"
+      data-filter=""
+      aria-pressed="true"
+      class="cursor-pointer rounded-full border border-zinc-300 px-3 py-1 text-sm transition-colors aria-pressed:border-indigo-600 aria-pressed:bg-indigo-600 aria-pressed:text-white dark:border-zinc-700"
+    >
+      {t("projects.filterAll")}
+    </button>
+    {
+      allProjectTags.map((tag) => (
+        <button
+          type="button"
+          data-filter={tag}
+          aria-pressed="false"
+          class="cursor-pointer rounded-full border border-zinc-300 px-3 py-1 text-sm transition-colors aria-pressed:border-indigo-600 aria-pressed:bg-indigo-600 aria-pressed:text-white dark:border-zinc-700"
+        >
+          {tag}
+        </button>
+      ))
+    }
+  </div>
+
+  <div id="project-grid" class="mt-6 grid gap-4 sm:grid-cols-2">
+    {
+      projects.map((project) => (
+        <ProjectCard project={project} locale={locale} />
+      ))
+    }
+  </div>
+</Base>
+
+<script>
+  const filters = document.getElementById("project-filters");
+  const cards = document.querySelectorAll<HTMLElement>(
+    "#project-grid .project-card",
+  );
+
+  if (filters) {
+    filters.hidden = false;
+    const buttons = filters.querySelectorAll<HTMLButtonElement>(
+      "button[data-filter]",
+    );
+
+    filters.addEventListener("click", (event) => {
+      const button = (event.target as HTMLElement).closest(
+        "button[data-filter]",
+      );
+      if (!(button instanceof HTMLButtonElement)) return;
+
+      const filter = button.dataset.filter ?? "";
+      buttons.forEach((b) =>
+        b.setAttribute("aria-pressed", String(b === button)),
+      );
+      cards.forEach((card) => {
+        const tags = (card.dataset.tags ?? "").split(",");
+        card.hidden = filter !== "" && !tags.includes(filter);
+      });
+    });
+  }
+</script>

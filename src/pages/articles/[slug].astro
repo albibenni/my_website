@@ -1,0 +1,16 @@
+---
+import ArticlePage from "@/components/pages/ArticlePage.astro";
+import { getArticles, parseArticleId } from "@/data/articles";
+
+export async function getStaticPaths() {
+  const articles = await getArticles("en");
+  return articles.map((article) => ({
+    params: { slug: parseArticleId(article.id).slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<ArticlePage article={article} locale="en" />

@@ -1,0 +1,37 @@
+---
+import Base from "@/layouts/Base.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import { getArticles } from "@/data/articles";
+import { useTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const articles = await getArticles(locale);
+---
+
+<Base
+  title={t("articles.title")}
+  description={t("articles.intro")}
+  locale={locale}
+>
+  <h1
+    class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100"
+  >
+    {t("articles.title")}
+  </h1>
+  <p class="mt-2 max-w-prose text-zinc-600 dark:text-zinc-400">
+    {t("articles.intro")}
+  </p>
+
+  <div class="mt-8 space-y-8">
+    {
+      articles.map((article) => (
+        <ArticleCard article={article} locale={locale} />
+      ))
+    }
+  </div>
+</Base>

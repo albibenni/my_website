@@ -1,0 +1,35 @@
+---
+import Base from "@/layouts/Base.astro";
+import { useTranslations } from "@/i18n";
+
+const t = useTranslations("en");
+const tIt = useTranslations("it");
+---
+
+<Base title={t("notFound.title")} description={t("notFound.body")} locale="en">
+  <section class="py-16 text-center">
+    <p class="text-6xl font-bold text-zinc-300 dark:text-zinc-700">404</p>
+    <h1 class="mt-4 text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+      {t("notFound.title")}
+    </h1>
+    <p class="mt-2 text-zinc-600 dark:text-zinc-400">{t("notFound.body")}</p>
+    <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-500" lang="it">
+      {tIt("notFound.body")}
+    </p>
+    <p class="mt-6 flex justify-center gap-4">
+      <a
+        href="/"
+        class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+      >
+        {t("notFound.backHome")}
+      </a>
+      <a
+        href="/it/"
+        lang="it"
+        class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+      >
+        {tIt("notFound.backHome")}
+      </a>
+    </p>
+  </section>
+</Base>

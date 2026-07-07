@@ -1,0 +1,95 @@
+---
+import "@/styles/global.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { siteConfig } from "@/config/site";
+import { defaultLocale, locales, translatePath, type Locale } from "@/i18n";
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  /**
+   * Per-locale paths for hreflang + the language switcher.
+   * Defaults to the current path with the /it prefix swapped, which is
+   * correct for every mirrored page; article pages override it.
+   */
+  alternates?: Record<Locale, string>;
+  ogType?: "website" | "article";
+}
+
+const { title, description, locale, ogType = "website" } = Astro.props;
+
+const alternates =
+  Astro.props.alternates ??
+  (Object.fromEntries(
+    locales.map((l) => [l, translatePath(Astro.url.pathname, l)]),
+  ) as Record<Locale, string>);
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const fullTitle =
+  title === siteConfig.author ? title : `${title} · ${siteConfig.author}`;
+const ogLocale = locale === "it" ? "it_IT" : "en_US";
+---
+
+<html lang={locale} class="scheme-light dark:scheme-dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={siteConfig.author} />
+    <link rel="canonical" href={canonical} />
+    {
+      locales.map((l) => (
+        <link
+          rel="alternate"
+          hreflang={l}
+          href={new URL(alternates[l], Astro.site)}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(alternates[defaultLocale], Astro.site)}
+    />
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={siteConfig.author} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${siteConfig.author} — RSS`}
+      href={locale === "it" ? "/it/rss.xml" : "/rss.xml"}
+    />
+
+    <!-- Set the theme before first paint to avoid a flash of the wrong mode. -->
+    <script is:inline>
+      const stored = localStorage.getItem("theme");
+      const dark =
+        stored === "dark" ||
+        (stored === null && matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.classList.toggle("dark", dark);
+    </script>
+  </head>
+  <body
+    class="flex min-h-screen flex-col bg-white font-sans text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-200"
+  >
+    <Header locale={locale} alternates={alternates} />
+    <main class="mx-auto w-full max-w-3xl grow px-5 py-10">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>
