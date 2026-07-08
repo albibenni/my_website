@@ -22,6 +22,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # generates .astro/types.d.ts; without it the typed ESLint rules
+      # can't resolve astro:content imports and report unsafe-any errors
+      - name: Generate Astro types
+        run: pnpm astro sync
+
       - name: Prettier
         run: pnpm format:check
 
