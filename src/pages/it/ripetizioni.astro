@@ -24,6 +24,45 @@ const subjects = [
   },
 ];
 
+const faqs = [
+  {
+    question:
+      "Quanto costano le ripetizioni di matematica, fisica o informatica?",
+    answer:
+      "La tariffa dipende dalla materia, dal livello (superiori o università) e dalla modalità (online o in presenza). Scrivimi due righe con la tua situazione e ti rispondo con disponibilità e prezzi — la prima mezz'ora di conoscenza è gratuita.",
+  },
+  {
+    question: "Come funzionano le lezioni online?",
+    answer:
+      "Ci vediamo in videochiamata con lavagna condivisa e, per informatica, un editor di codice collaborativo. Alla fine della lezione ti restano appunti ed esercizi su cui lavorare. Funziona ovunque tu sia, serve solo una connessione stabile.",
+  },
+  {
+    question: "In quali zone fai lezioni in presenza?",
+    answer:
+      "A Gravellona Toce, Verbania e dintorni: Omegna, Baveno, Stresa e in generale la zona del VCO / Lago Maggiore. Per il resto d'Italia sono disponibile online.",
+  },
+  {
+    question: "Fino a che livello segui matematica e fisica?",
+    answer:
+      "Tutte le scuole superiori (compresi recupero debiti e preparazione alla maturità) e i primi anni di università: analisi matematica, algebra lineare e fisica generale.",
+  },
+  {
+    question: "Posso imparare a programmare da zero?",
+    answer:
+      "Sì. Faccio percorsi per chi parte da zero, di solito con Python o JavaScript: dalle basi della programmazione fino a costruire piccoli progetti reali. Lavoro come software engineer, quindi impari anche gli strumenti che si usano davvero (Git, terminale, editor).",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -111,6 +150,26 @@ const jsonLd = {
 
   <section class="mt-10">
     <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+      Domande frequenti
+    </h2>
+    <div class="mt-4 space-y-3">
+      {
+        faqs.map((faq) => (
+          <details class="group rounded-lg border border-zinc-200 p-4 dark:border-zinc-800">
+            <summary class="cursor-pointer font-medium text-zinc-900 marker:text-indigo-600 dark:text-zinc-100 dark:marker:text-indigo-400">
+              {faq.question}
+            </summary>
+            <p class="mt-2 max-w-prose text-sm text-zinc-600 dark:text-zinc-400">
+              {faq.answer}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
       Contattami
     </h2>
     <p class="mt-3 max-w-prose text-zinc-600 dark:text-zinc-400">
@@ -133,4 +192,9 @@ const jsonLd = {
   type="application/ld+json"
   is:inline
   set:html={JSON.stringify(jsonLd)}
+/>
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(faqJsonLd)}
 />

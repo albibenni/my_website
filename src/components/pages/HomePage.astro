@@ -88,4 +88,26 @@ const recentArticles = (await getArticles(locale)).slice(0, 3);
       }
     </div>
   </section>
+
+  {
+    locale === "it" && (
+      <section class="mt-14 rounded-lg border border-indigo-200 bg-indigo-50 p-5 dark:border-indigo-900 dark:bg-indigo-950/40">
+        <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+          Ripetizioni di matematica, fisica e informatica
+        </h2>
+        <p class="mt-2 max-w-prose text-sm text-zinc-600 dark:text-zinc-400">
+          Offro anche ripetizioni private per superiori e università — online
+          oppure in presenza nella zona di Gravellona Toce e Verbania (VCO).
+        </p>
+        <p class="mt-3">
+          <a
+            href="/it/ripetizioni/"
+            class="text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+          >
+            Scopri di più →
+          </a>
+        </p>
+      </section>
+    )
+  }
 </Base>
