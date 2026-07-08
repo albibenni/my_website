@@ -1,4 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#4f46e5"/>
-  <text x="32" y="43" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="700" fill="#ffffff" text-anchor="middle">AB</text>
+  <!-- tentacles -->
+  <g fill="none" stroke="#4f46e5" stroke-width="6" stroke-linecap="round">
+    <path d="M15 32 C 11 44, 5 45, 6 53" />
+    <path d="M24 37 C 22 48, 15 51, 17 58" />
+    <path d="M32 39 C 32 49, 29 53, 33 58" />
+    <path d="M40 37 C 42 48, 49 51, 47 58" />
+    <path d="M49 32 C 53 44, 59 45, 58 53" />
+  </g>
+  <!-- head -->
+  <ellipse cx="32" cy="24" rx="18" ry="16" fill="#4f46e5" />
+  <!-- eyes -->
+  <circle cx="25" cy="26" r="4.5" fill="#ffffff" />
+  <circle cx="39" cy="26" r="4.5" fill="#ffffff" />
+  <circle cx="25.5" cy="27" r="2.2" fill="#1e1b4b" />
+  <circle cx="39.5" cy="27" r="2.2" fill="#1e1b4b" />
 </svg>
