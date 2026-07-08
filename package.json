@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "hooks:install": "bash scripts/setup-hooks.sh"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
