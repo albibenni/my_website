@@ -1,0 +1,11 @@
+// Cloudflare Workers config: static-assets-only deployment of the built site.
+// With this file present, `wrangler deploy` just uploads ./dist and skips its
+// interactive framework setup (which would try to add the SSR adapter).
+{
+  "name": "mywebsite",
+  "compatibility_date": "2026-07-08",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
