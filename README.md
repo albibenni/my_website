@@ -18,16 +18,16 @@ validated with [zod](https://zod.dev) at build time.
 | `pnpm lint`    | ESLint (`lint:fix` to auto-fix)          |
 | `pnpm format`  | Prettier (`format:check` to verify only) |
 
-## Before going live (TODOs)
+## Deployment
 
-1. **Domain** — set `SITE_URL` in `astro.config.ts` to your real domain
-   (used for canonical URLs, sitemap, robots.txt and RSS).
-2. **Social links** — replace the placeholder GitHub/LinkedIn URLs in
-   `src/config/site.ts`.
-3. **CV PDF** — drop your CV at `public/cv-alberto-benatti.pdf`, or set
-   `cvPdfPath: null` in `src/config/site.ts` to hide the download button.
-4. **Projects** — replace the sample entries in `src/data/projects.ts`.
-5. **CV content** — replace the placeholder entries in `src/data/cv.ts`.
+Hosted on Cloudflare Pages at [albertobenatti.dev](https://albertobenatti.dev).
+Build command `pnpm build`, output directory `dist`. The `packageManager`
+field in `package.json` pins the pnpm version Cloudflare uses — keep it in
+sync when upgrading pnpm locally, since `pnpm-workspace.yaml` uses pnpm 11+
+syntax that older pnpm versions reject.
+
+The domain lives in `SITE_URL` in `astro.config.ts` (used for canonical
+URLs, sitemap, robots.txt and RSS).
 
 ## Where things live
 
