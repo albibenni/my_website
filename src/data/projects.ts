@@ -26,6 +26,17 @@ export const projects: Project[] = z.array(projectSchema).parse([
     featured: true,
   },
   {
+    id: "swiftborders",
+    title: "SwiftBorders",
+    description: {
+      en: "Colored window borders for macOS 15+ that highlight the focused window — a companion for AeroSpace and yabai. Built on public Accessibility and AppKit APIs only, so it keeps working across macOS releases.",
+      it: "Bordi colorati per le finestre su macOS 15+ che evidenziano la finestra attiva — un companion per AeroSpace e yabai. Costruito solo su API pubbliche (Accessibility e AppKit), così continua a funzionare tra le versioni di macOS.",
+    },
+    tags: ["Swift", "AppKit", "macOS"],
+    repoUrl: "https://github.com/albibenni/SwiftBorders",
+    featured: true,
+  },
+  {
     id: "kindle-highlights",
     title: "Kindle Highlights Parser",
     description: {
