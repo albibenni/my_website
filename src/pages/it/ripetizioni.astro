@@ -1,0 +1,136 @@
+---
+import Base from "@/layouts/Base.astro";
+import { siteConfig } from "@/config/site";
+
+const title = "Ripetizioni di matematica, fisica e informatica";
+const description =
+  "Ripetizioni private di matematica, fisica e informatica: online oppure in presenza a Gravellona Toce, Verbania e dintorni (VCO). Per superiori e università.";
+
+const subjects = [
+  {
+    name: "Matematica",
+    detail:
+      "Algebra, geometria analitica, funzioni, limiti, derivate e integrali. Preparazione a verifiche, recupero debiti ed esami di maturità.",
+  },
+  {
+    name: "Fisica",
+    detail:
+      "Cinematica, dinamica, termodinamica, elettromagnetismo. Metodo pratico: partiamo dagli esercizi per arrivare alla teoria.",
+  },
+  {
+    name: "Informatica",
+    detail:
+      "Programmazione (Python, Java, JavaScript/TypeScript, C), basi di dati e SQL, algoritmi. Supporto per esami universitari, progetti e primi passi nel coding.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Ripetizioni di matematica, fisica e informatica",
+  provider: {
+    "@type": "Person",
+    name: siteConfig.author,
+    email: siteConfig.email,
+    url: "https://albertobenatti.dev/it/",
+  },
+  areaServed: [
+    { "@type": "City", name: "Gravellona Toce" },
+    { "@type": "City", name: "Verbania" },
+    {
+      "@type": "AdministrativeArea",
+      name: "Verbano-Cusio-Ossola",
+    },
+    "Online / a distanza",
+  ],
+  availableLanguage: "it",
+  url: new URL(Astro.url.pathname, Astro.site).toString(),
+};
+---
+
+<Base
+  title={title}
+  description={description}
+  locale="it"
+  alternates={{ it: "/it/ripetizioni/" }}
+>
+  <h1
+    class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100"
+  >
+    Ripetizioni di matematica, fisica e informatica
+  </h1>
+  <p class="mt-3 max-w-prose text-zinc-600 dark:text-zinc-400">
+    Sono un software engineer laureato in Informatica e offro ripetizioni
+    private di <strong>matematica</strong>, <strong>fisica</strong> e
+    <strong>informatica</strong> per studenti delle scuole superiori e dell'università
+    — <strong>online</strong> oppure in presenza nella zona di
+    <strong>Gravellona Toce e Verbania</strong>.
+  </p>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+      Materie
+    </h2>
+    <div class="mt-4 space-y-5">
+      {
+        subjects.map((subject) => (
+          <div>
+            <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
+              {subject.name}
+            </h3>
+            <p class="mt-1 max-w-prose text-sm text-zinc-600 dark:text-zinc-400">
+              {subject.detail}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+      Dove e come
+    </h2>
+    <ul
+      class="mt-4 max-w-prose list-disc space-y-2 pl-5 text-zinc-600 dark:text-zinc-400"
+    >
+      <li>
+        <strong>Online:</strong> lezioni a distanza via videochiamata con lavagna
+        condivisa ed editor di codice collaborativo — funziona ovunque tu sia in Italia.
+      </li>
+      <li>
+        <strong>In presenza:</strong> a Gravellona Toce, Verbania e dintorni (Omegna,
+        Baveno, Stresa e il resto del VCO / Lago Maggiore).
+      </li>
+      <li>
+        <strong>Per chi:</strong> studenti delle superiori, universitari e adulti
+        che vogliono imparare a programmare da zero.
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+      Contattami
+    </h2>
+    <p class="mt-3 max-w-prose text-zinc-600 dark:text-zinc-400">
+      Scrivimi due righe su di te (o su tuo figlio/a): materia, scuola o corso
+      di studi e obiettivo. Ti rispondo con disponibilità e tariffe, e la prima
+      mezz'ora di conoscenza è gratuita.
+    </p>
+    <p class="mt-5">
+      <a
+        href={`mailto:${siteConfig.email}?subject=Ripetizioni`}
+        class="inline-block rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-700"
+      >
+        Scrivimi: {siteConfig.email}
+      </a>
+    </p>
+  </section>
+</Base>
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(jsonLd)}
+/>

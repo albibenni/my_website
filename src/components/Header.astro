@@ -4,19 +4,25 @@ import { translatePath, useTranslations, type Locale } from "@/i18n";
 
 interface Props {
   locale: Locale;
-  alternates: Record<Locale, string>;
+  alternates: Partial<Record<Locale, string>>;
 }
 
 const { locale, alternates } = Astro.props;
 const t = useTranslations(locale);
 
 const otherLocale: Locale = locale === "en" ? "it" : "en";
+// Pages without a translation send the switcher to the other locale's home.
+const switchHref = alternates[otherLocale] ?? translatePath("/", otherLocale);
 
 const navItems = [
   { href: translatePath("/", locale), label: t("nav.home") },
   { href: translatePath("/projects/", locale), label: t("nav.projects") },
   { href: translatePath("/articles/", locale), label: t("nav.articles") },
   { href: translatePath("/about/", locale), label: t("nav.about") },
+  // Italian-only: private tutoring page.
+  ...(locale === "it"
+    ? [{ href: "/it/ripetizioni/", label: "Ripetizioni" }]
+    : []),
 ];
 
 function isActive(href: string): boolean {
@@ -65,7 +71,7 @@ function isActive(href: string): boolean {
 
     <div class="ml-auto flex items-center gap-3 text-sm">
       <a
-        href={alternates[otherLocale]}
+        href={switchHref}
         rel="alternate"
         hreflang={otherLocale}
         aria-label={t("nav.switchLanguage")}
