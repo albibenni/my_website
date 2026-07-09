@@ -1,6 +1,6 @@
 ---
 import type { Project } from "@/data/projects";
-import { useTranslations, type Locale } from "@/i18n";
+import { useTranslations, translatePath, type Locale } from "@/i18n";
 
 interface Props {
   project: Project;
@@ -12,11 +12,22 @@ const t = useTranslations(locale);
 ---
 
 <article
-  class="project-card flex flex-col rounded-lg border border-zinc-200 p-5 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+  class="project-card relative flex flex-col rounded-lg border border-zinc-200 p-5 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
   data-tags={project.tags.join(",")}
 >
   <h3 class="font-semibold text-zinc-900 dark:text-zinc-100">
-    {project.title}
+    {
+      project.hasDetails ? (
+        <a
+          href={translatePath(`/projects/${project.id}`, locale)}
+          class="after:absolute after:inset-0 focus:outline-none"
+        >
+          {project.title}
+        </a>
+      ) : (
+        project.title
+      )
+    }
   </h3>
   <p class="mt-2 grow text-sm text-zinc-600 dark:text-zinc-400">
     {project.description[locale]}
@@ -31,8 +42,16 @@ const t = useTranslations(locale);
     }
   </ul>
   {
-    (project.repoUrl || project.demoUrl) && (
-      <p class="mt-4 flex gap-4 text-sm">
+    (project.repoUrl || project.demoUrl || project.hasDetails) && (
+      <p class="relative z-10 mt-4 flex gap-4 text-sm">
+        {project.hasDetails && (
+          <a
+            href={translatePath(`/projects/${project.id}`, locale)}
+            class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+          >
+            {t("projects.details")}
+          </a>
+        )}
         {project.repoUrl && (
           <a
             href={project.repoUrl}

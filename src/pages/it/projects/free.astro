@@ -1,0 +1,51 @@
+---
+import ProjectDetailsPage from "@/components/pages/ProjectDetailsPage.astro";
+---
+
+<ProjectDetailsPage projectId="free" locale="it">
+  <h2>Informazioni su Free</h2>
+  <p>
+    Free è un'applicazione nativa per macOS progettata per aiutarti a ritrovare
+    la concentrazione e gestire efficacemente il tempo trascorso davanti allo
+    schermo. Offre un'applicazione rigorosa delle allowlist, regole di blocco
+    con caratteri jolly (wildcard), programmazioni settimanali, cicli Pomodoro e
+    importazione dal calendario. Dotata di una modalità "strict" resistente alle
+    manomissioni, garantisce che tu rimanga concentrato durante le tue sessioni
+    di lavoro.
+  </p>
+  <p>
+    Per istruzioni dettagliate sulla configurazione, funzionalità avanzate e
+    risoluzione dei problemi, consulta il <a
+      href="https://github.com/albibenni/free#readme"
+      target="_blank"
+      rel="noopener">README ufficiale su GitHub</a
+    >.
+  </p>
+
+  <h2>Installazione</h2>
+
+  <h3>Download .dmg</h3>
+  <p>Puoi scaricare direttamente l'ultima versione di Free:</p>
+  <p>
+    <a
+      href="https://github.com/albibenni/free/releases/latest/download/Free.dmg"
+      class="not-prose inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white no-underline shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    >
+      <svg
+        class="mr-2 -ml-1 h-5 w-5"
+        fill="currentColor"
+        viewBox="0 0 384 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 22.1 184.4 4 273.5q-9 49.3 15.3 104.9c13.7 30 35.5 68.3 71.2 68.3 33.7 0 46-21.7 85.5-21.7 39 0 48.7 21.7 85.5 21.7 39.4 0 65.5-44.2 80-72.3 26.6-51.2 5.3-95.2-22.8-105.8zM245.9 83c36.1-41.8 28.5-83 28.5-83-36.1 2.3-70 21.7-93.5 54.3-17.6 23.9-30 52-25.7 82.5 37.9 3.5 70.8-23.7 90.7-53.8z"
+        ></path>
+      </svg>
+      Scarica Free.dmg
+    </a>
+  </p>
+
+  <h3>Homebrew</h3>
+  <p>In alternativa, puoi installare Free tramite Homebrew:</p>
+  <pre><code>brew install albibenni/tap/free</code></pre>
+</ProjectDetailsPage>

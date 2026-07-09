@@ -9,6 +9,7 @@ const projectSchema = z.object({
   repoUrl: z.url().optional(),
   demoUrl: z.url().optional(),
   featured: z.boolean().default(false),
+  hasDetails: z.boolean().default(false),
 });
 
 export type Project = z.infer<typeof projectSchema>;
@@ -24,6 +25,7 @@ export const projects: Project[] = z.array(projectSchema).parse([
     tags: ["Swift", "AppKit", "macOS"],
     repoUrl: "https://github.com/albibenni/free",
     featured: true,
+    hasDetails: true,
   },
   {
     id: "swiftborders",
@@ -35,6 +37,7 @@ export const projects: Project[] = z.array(projectSchema).parse([
     tags: ["Swift", "AppKit", "macOS"],
     repoUrl: "https://github.com/albibenni/SwiftBorders",
     featured: true,
+    hasDetails: true,
   },
   {
     id: "kindle-highlights",

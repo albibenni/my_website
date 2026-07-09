@@ -1,0 +1,29 @@
+---
+import ProjectDetailsPage from "@/components/pages/ProjectDetailsPage.astro";
+---
+
+<ProjectDetailsPage projectId="swiftborders" locale="it">
+  <h2>Informazioni su SwiftBorders</h2>
+  <p>
+    SwiftBorders aggiunge bordi colorati alle finestre su macOS 15+,
+    evidenziando la finestra attualmente attiva. È il compagno perfetto per
+    window manager come AeroSpace e yabai. Essendo basato interamente su API
+    pubbliche (Accessibility e AppKit), è progettato per essere stabile e
+    continuare a funzionare con le future versioni di macOS senza richiedere la
+    disabilitazione della System Integrity Protection (SIP).
+  </p>
+  <p>
+    Per ulteriori dettagli su come configurare i colori dei bordi, lo spessore e
+    integrarlo nel tuo flusso di lavoro, leggi il <a
+      href="https://github.com/albibenni/SwiftBorders#readme"
+      target="_blank"
+      rel="noopener">README ufficiale su GitHub</a
+    >.
+  </p>
+
+  <h2>Installazione</h2>
+
+  <h3>Homebrew</h3>
+  <p>Il modo più semplice per installare SwiftBorders è tramite Homebrew:</p>
+  <pre><code>brew install albibenni/tap/swiftborders</code></pre>
+</ProjectDetailsPage>

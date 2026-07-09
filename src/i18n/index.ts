@@ -39,6 +39,9 @@ const en = {
   "projects.filterAll": "All",
   "projects.sourceCode": "Source code",
   "projects.liveDemo": "Live demo",
+  "projects.details": "Details",
+  "projects.download": "Download",
+  "projects.installBrew": "Install via Homebrew",
 
   "articles.title": "Articles",
   "articles.intro": "Notes and write-ups on things I learn and build.",
@@ -88,6 +91,9 @@ const it: Record<UIKey, string> = {
   "projects.filterAll": "Tutti",
   "projects.sourceCode": "Codice sorgente",
   "projects.liveDemo": "Demo live",
+  "projects.details": "Dettagli",
+  "projects.download": "Scarica",
+  "projects.installBrew": "Installa tramite Homebrew",
 
   "articles.title": "Articoli",
   "articles.intro": "Appunti e approfondimenti su ciò che imparo e costruisco.",

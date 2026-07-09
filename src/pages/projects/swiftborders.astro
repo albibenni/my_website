@@ -1,0 +1,29 @@
+---
+import ProjectDetailsPage from "@/components/pages/ProjectDetailsPage.astro";
+---
+
+<ProjectDetailsPage projectId="swiftborders" locale="en">
+  <h2>About SwiftBorders</h2>
+  <p>
+    SwiftBorders brings colored window borders to macOS 15+, highlighting the
+    currently active window. It serves as a perfect companion for window
+    managers like AeroSpace and yabai. Built entirely on public Accessibility
+    and AppKit APIs, it is designed to be stable and keep working across future
+    macOS releases without requiring system integrity protection (SIP)
+    disabling.
+  </p>
+  <p>
+    For more details on how to configure border colors, widths, and integrate it
+    with your workflow, please read the <a
+      href="https://github.com/albibenni/SwiftBorders#readme"
+      target="_blank"
+      rel="noopener">official README on GitHub</a
+    >.
+  </p>
+
+  <h2>Installation</h2>
+
+  <h3>Homebrew</h3>
+  <p>The easiest way to install SwiftBorders is via Homebrew:</p>
+  <pre><code>brew install albibenni/tap/swiftborders</code></pre>
+</ProjectDetailsPage>
