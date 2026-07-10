@@ -42,8 +42,11 @@ const t = useTranslations(locale);
     }
   </ul>
   {
-    (project.repoUrl || project.demoUrl || project.hasDetails) && (
-      <p class="relative z-10 mt-4 flex gap-4 text-sm">
+    (project.repoUrl ||
+      project.demoUrl ||
+      project.npmUrl ||
+      project.hasDetails) && (
+      <div class="relative z-10 mt-4 flex items-center gap-4 text-sm">
         {project.hasDetails && (
           <a
             href={translatePath(`/projects/${project.id}`, locale)}
@@ -72,7 +75,37 @@ const t = useTranslations(locale);
             {t("projects.liveDemo")}
           </a>
         )}
-      </p>
+        {project.npmUrl && (
+          <a
+            href={project.npmUrl}
+            target="_blank"
+            rel="noopener"
+            class="text-zinc-600 transition-colors hover:text-red-500 dark:text-zinc-400 dark:hover:text-red-500"
+            title="npm package"
+            aria-label="View on npm"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-5 w-5"
+            >
+              <path d="M1 8h22v7H11v2H7v-2H1z" />
+              <path d="M7 8v7" />
+              <path d="M14 8v7" />
+              <path d="M17 11v4" />
+              <path d="M20 11v4" />
+              <path d="M23 11v4" />
+            </svg>
+          </a>
+        )}
+      </div>
     )
   }
 </article>

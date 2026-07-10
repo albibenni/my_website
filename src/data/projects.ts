@@ -8,6 +8,7 @@ const projectSchema = z.object({
   tags: z.array(z.string().min(1)).min(1),
   repoUrl: z.url().optional(),
   demoUrl: z.url().optional(),
+  npmUrl: z.url().optional(),
   featured: z.boolean().default(false),
   hasDetails: z.boolean().default(false),
 });
@@ -15,6 +16,18 @@ const projectSchema = z.object({
 export type Project = z.infer<typeof projectSchema>;
 
 export const projects: Project[] = z.array(projectSchema).parse([
+  {
+    id: "ai-tracker",
+    title: "AI Tracker",
+    description: {
+      en: "A CLI tool that tracks your code changes while you work, seamlessly organizing them into comprehensive prompts for AI coding assistants. Automatically generates clean, context-rich diffs for ChatGPT, Claude, and Gemini.",
+      it: "Un tool CLI che traccia i cambiamenti nel tuo codice mentre lavori, organizzandoli in prompt completi per gli assistenti virtuali. Genera automaticamente diff puliti e ricchi di contesto per ChatGPT, Claude e Gemini.",
+    },
+    tags: ["TypeScript", "CLI", "AI", "Node.js"],
+    repoUrl: "https://github.com/albibenni/ai-tracker",
+    npmUrl: "https://www.npmjs.com/package/ai-tracker",
+    featured: true,
+  },
   {
     id: "free",
     title: "Free",
