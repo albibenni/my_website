@@ -20,13 +20,14 @@ export const projects: Project[] = z.array(projectSchema).parse([
     id: "ai-tracker",
     title: "AI Tracker",
     description: {
-      en: "A CLI tool that tracks your code changes while you work, seamlessly organizing them into comprehensive prompts for AI coding assistants. Automatically generates clean, context-rich diffs for ChatGPT, Claude, and Gemini.",
-      it: "Un tool CLI che traccia i cambiamenti nel tuo codice mentre lavori, organizzandoli in prompt completi per gli assistenti virtuali. Genera automaticamente diff puliti e ricchi di contesto per ChatGPT, Claude e Gemini.",
+      en: "A local-first Next.js application that monitors, analyzes, and estimates costs for your AI CLI tools. It reads local log files from assistants like Antigravity and Claude to provide a unified dashboard of your token usage and expenses.",
+      it: "Un'applicazione Next.js locale che monitora, analizza e stima i costi per i tuoi tool CLI basati sull'IA. Legge i file di log locali di assistenti come Antigravity e Claude per fornirti una dashboard unificata dei consumi e delle spese.",
     },
-    tags: ["TypeScript", "CLI", "AI", "Node.js"],
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     repoUrl: "https://github.com/albibenni/ai-tracker",
     npmUrl: "https://www.npmjs.com/package/ai-tracker",
     featured: true,
+    hasDetails: true,
   },
   {
     id: "free",

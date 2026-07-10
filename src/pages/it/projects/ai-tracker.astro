@@ -1,0 +1,108 @@
+---
+import ProjectDetailsPage from "@/components/pages/ProjectDetailsPage.astro";
+---
+
+<ProjectDetailsPage projectId="ai-tracker" locale="it">
+  <h2>Informazioni su AI Tracker</h2>
+  <p>
+    AI Tracker è un'applicazione Next.js locale progettata per monitorare,
+    analizzare e stimare i costi dei tuoi tool CLI basati sull'IA. Leggendo i
+    file di log locali generati dagli assistenti (come Antigravity e Claude), ti
+    fornisce una dashboard unificata per tracciare i tuoi consumi e le tue
+    spese.
+  </p>
+  <p>
+    L'applicazione gira interamente sulla tua macchina, processando i file
+    `.jsonl` localmente. Calcola un costo approssimativo e l'utilizzo dei token
+    basandosi su specifici modelli di prezzo, supporta i filtri per strumento e
+    intervallo di tempo e garantisce che i tuoi dati rimangano completamente
+    privati.
+  </p>
+  <p>
+    Per istruzioni dettagliate sulla configurazione, funzionalità avanzate e
+    risoluzione dei problemi, controlla il <a
+      href="https://github.com/albibenni/ai-tracker#readme"
+      target="_blank"
+      rel="noopener">README ufficiale su GitHub</a
+    >.
+  </p>
+
+  <h2>Installazione e Utilizzo</h2>
+
+  <h3>Avvio Rapido (npx)</h3>
+  <p>
+    Il modo più semplice per utilizzare AI Tracker è eseguirlo direttamente
+    tramite <code>npx</code> (nessuna installazione richiesta):
+  </p>
+  <pre><code>npx ai-tracker</code></pre>
+
+  <h3>Installazione Globale</h3>
+  <p>
+    In alternativa, puoi installare AI Tracker globalmente per averlo sempre a
+    disposizione:
+  </p>
+  <p>
+    <a
+      href="https://www.npmjs.com/package/ai-tracker"
+      class="not-prose inline-flex items-center rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white no-underline shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+    >
+      <svg
+        class="mr-2 -ml-1 h-5 w-5"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 8h22v7H11v2H7v-2H1z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M7 8v7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M14 8v7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M17 11v4"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M20 11v4"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M23 11v4"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      Vedi su npm
+    </a>
+  </p>
+  <pre><code>npm install -g ai-tracker</code></pre>
+
+  <p>
+    Una volta installato, puoi avviare la dashboard semplicemente eseguendo:
+  </p>
+  <pre><code>ai-tracker</code></pre>
+
+  <p>
+    La dashboard si aprirà automaticamente nel tuo browser all'indirizzo <code
+      >http://localhost:14832</code
+    >.
+  </p>
+</ProjectDetailsPage>
