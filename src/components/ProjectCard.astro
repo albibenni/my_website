@@ -45,8 +45,11 @@ const t = useTranslations(locale);
     (project.repoUrl ||
       project.demoUrl ||
       project.npmUrl ||
-      project.hasDetails) && (
-      <div class="relative z-10 mt-4 flex items-center gap-4 text-sm">
+      project.hasDetails ||
+      project.macUrl ||
+      project.windowsUrl ||
+      project.linuxUrl) && (
+      <div class="relative z-10 mt-4 flex flex-wrap items-center gap-4 text-sm">
         {project.hasDetails && (
           <a
             href={translatePath(`/projects/${project.id}`, locale)}
@@ -103,6 +106,36 @@ const t = useTranslations(locale);
               <path d="M20 11v4" />
               <path d="M23 11v4" />
             </svg>
+          </a>
+        )}
+        {project.macUrl && (
+          <a
+            href={project.macUrl}
+            target="_blank"
+            rel="noopener"
+            class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+          >
+            {t("projects.downloadMac")}
+          </a>
+        )}
+        {project.windowsUrl && (
+          <a
+            href={project.windowsUrl}
+            target="_blank"
+            rel="noopener"
+            class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+          >
+            {t("projects.downloadWindows")}
+          </a>
+        )}
+        {project.linuxUrl && (
+          <a
+            href={project.linuxUrl}
+            target="_blank"
+            rel="noopener"
+            class="font-medium text-indigo-600 hover:underline dark:text-indigo-400"
+          >
+            {t("projects.downloadLinux")}
           </a>
         )}
       </div>

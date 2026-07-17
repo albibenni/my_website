@@ -9,6 +9,9 @@ const projectSchema = z.object({
   repoUrl: z.url().optional(),
   demoUrl: z.url().optional(),
   npmUrl: z.url().optional(),
+  macUrl: z.url().optional(),
+  windowsUrl: z.url().optional(),
+  linuxUrl: z.url().optional(),
   featured: z.boolean().default(false),
   hasDetails: z.boolean().default(false),
 });
@@ -84,6 +87,22 @@ export const projects: Project[] = z.array(projectSchema).parse([
     },
     tags: ["Astro", "TypeScript", "Tailwind CSS"],
     repoUrl: "https://github.com/albibenni/my-website",
+  },
+  {
+    id: "test-yourself",
+    title: "Test Yourself",
+    description: {
+      en: "A fast, desktop-based quiz application built with Tauri, React, and TypeScript. Point to a local folder of Markdown-based quizzes to test your knowledge.",
+      it: "Un'applicazione quiz desktop veloce, costruita con Tauri, React e TypeScript. Seleziona una cartella locale di quiz in Markdown per testare le tue conoscenze.",
+    },
+    tags: ["Tauri", "React", "TypeScript"],
+    repoUrl: "https://github.com/albibenni/test-yourself",
+    macUrl: "https://github.com/albibenni/test-yourself/releases/latest",
+    windowsUrl:
+      "https://github.com/albibenni/test-yourself/releases/download/v0.1.6/Test.Yourself_0.1.6_x64-setup.exe",
+    linuxUrl:
+      "https://github.com/albibenni/test-yourself/releases/download/v0.1.6/Test.Yourself_0.1.6_amd64.AppImage",
+    featured: true,
   },
 ]);
 

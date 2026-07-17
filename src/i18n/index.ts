@@ -41,6 +41,9 @@ const en = {
   "projects.liveDemo": "Live demo",
   "projects.details": "Details",
   "projects.download": "Download",
+  "projects.downloadMac": "Download for macOS",
+  "projects.downloadWindows": "Download for Windows",
+  "projects.downloadLinux": "Download for Linux",
   "projects.installBrew": "Install via Homebrew",
 
   "articles.title": "Articles",
@@ -93,6 +96,9 @@ const it: Record<UIKey, string> = {
   "projects.liveDemo": "Demo live",
   "projects.details": "Dettagli",
   "projects.download": "Scarica",
+  "projects.downloadMac": "Scarica per macOS",
+  "projects.downloadWindows": "Scarica per Windows",
+  "projects.downloadLinux": "Scarica per Linux",
   "projects.installBrew": "Installa tramite Homebrew",
 
   "articles.title": "Articoli",
