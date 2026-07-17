@@ -9,9 +9,9 @@ const projectSchema = z.object({
   repoUrl: z.url().optional(),
   demoUrl: z.url().optional(),
   npmUrl: z.url().optional(),
-  macUrl: z.url().optional(),
-  windowsUrl: z.url().optional(),
-  linuxUrl: z.url().optional(),
+  macUrl: z.string().optional(),
+  windowsUrl: z.string().optional(),
+  linuxUrl: z.string().optional(),
   featured: z.boolean().default(false),
   hasDetails: z.boolean().default(false),
 });
@@ -97,12 +97,11 @@ export const projects: Project[] = z.array(projectSchema).parse([
     },
     tags: ["Tauri", "React", "TypeScript"],
     repoUrl: "https://github.com/albibenni/test-yourself",
-    macUrl: "https://github.com/albibenni/test-yourself/releases/latest",
-    windowsUrl:
-      "https://github.com/albibenni/test-yourself/releases/download/v0.1.6/Test.Yourself_0.1.6_x64-setup.exe",
-    linuxUrl:
-      "https://github.com/albibenni/test-yourself/releases/download/v0.1.6/Test.Yourself_0.1.6_amd64.AppImage",
+    macUrl: "/download/test-yourself/mac",
+    windowsUrl: "/download/test-yourself/windows",
+    linuxUrl: "/download/test-yourself/linux",
     featured: true,
+    hasDetails: true,
   },
 ]);
 
